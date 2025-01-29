@@ -1,0 +1,16 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+<body>
+    <h2>Login on TripSplit</h2>
+    <form action="/login" method="POST">
+        <div>
+            <label for="name">username: </label>
+            <input id="name" name="name" type="text" required>
+        </div>
+        
+        <div>
+            <label for="password">password: </label>
+            <input id="password" name="password" type="text" required>
+        </div>
+        <button>Login</button>
+    </form>
+</body>
