@@ -1,0 +1,57 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+<style>
+   
+    .background{
+        margin-top: 50px;
+        position: fixed;
+        top: 0;
+        /* transform: scale(1.5); */
+        height: 100vh;
+        z-index: -1;
+    }
+    .newTrip{
+        padding: 10px;
+        color: white;
+        margin-top: 120px;
+        
+    }
+    .newTripBody{
+        border: 2px solid #00FFC6;
+        padding: 60px 40px;
+    }
+    
+   
+</style>
+<body>
+    <iframe class="background" src='https://my.spline.design/particles-d9382bce4660304725e818210677b275/' frameborder='0' width='100%' height='100%'></iframe>
+    <div class=" newTrip ">
+        <div class="newTripBody ">
+            
+            <h2>Add Friend</h2>
+            <form action="/trip/<%=id%>/addFriend" method="POST" class="needs-validation" novalidate>
+                
+                
+                <div class="participants mt-3">
+                    <div>
+                        <label for="name" class="form-label"> Group Member: </label>
+                        <input id="name" class="form-control" name="name" placeholder="Enter Member Name" type="text" required>
+                        <div class="invalid-feedback">
+                            Name is required!
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="form-label"> Email: </label>
+                        <input id="email" class="form-control" name="email" placeholder="Enter Member Name" type="email" required>
+                        <div class="invalid-feedback">
+                            Email is required!
+                        </div>
+                    </div>
+                    
+                </div>
+                <button  type="submit" class="btn btn-primary mt-2">Add</button>
+            </form>
+            
+        </div>
+    </div>
+    
+</body>

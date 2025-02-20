@@ -1,0 +1,161 @@
+<%- layout('/layouts/boilerplate.ejs') %>
+<style>
+    .background{
+        position: fixed;
+        top: 0;
+        z-index: -1;
+        height: 100vh;
+    }
+    .index{
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 100vw;
+        
+    }
+</style>
+<body>
+    <iframe class="background" src='https://my.spline.design/particles-1277517a5484b5ce959713e0b6bf2745/' frameborder='0' width='100%' height='100%'></iframe>
+            <button style="display: block;margin-left: auto;margin-top: 5px;"  class="btn btn-primary " onclick="showAlert()">Check Expense Report</button>
+            <button style="display: block;margin-left: auto;margin-top: 5px;" class="btn btn-danger" onclick="showAlertForDelete()">Delete</button>
+        
+            <h2 style="text-align: center; margin-top: 2rem;color: white;">Trip Name: <%=group.title%></h2>
+        <div class="index mt-5">
+            <div class="">
+                
+                    <h3 class="mb-4">Group Members</h3>
+                    <%let cnt=1%>
+                    <%for(let par of group.participants){%>
+                        <div class="m-2" style="display: flex;">
+                            <span style="font-weight: 500;">Member -<%=cnt%> : <%=par.name%> &nbsp;&nbsp; </span>
+                            <form action="/trip/<%=group._id%>/<%=par._id%>/deleteFriend?_method=DELETE" method="POST">
+                                <button class="btn btn-sm "><i style="color:red;"  class="bi bi-trash"></i></button>
+                            </form>
+                            
+                        </div>
+                        
+
+                        <%cnt+=1%>
+                    <%}%>
+                    <br>
+                    <button style="width: 100%; margin: auto;" class="btn btn-primary"  ><a  href="/trip/<%=group.id%>/addFriend">Add Friend</a></button>
+                    
+                    
+                
+                    <div id="showId" class="alert AlertClass  alert-success alert-dismissible fade show   mt-3">
+                    
+                        <h2>Total Cost Spend By Each Participant</h2>
+                        <hr>
+                        
+                        <%for(let parti of allParticipants){%>
+                            <p style="font-weight: 500; font-size: large;"><%=parti.name%> has spend <%=parti.totalCost%></p>
+                        <%}%>
+               
+                        <hr>
+                    
+                            <p style="font-weight: 500; font-size: large;">Splitted Cost : <%=SplittedCost.toFixed(2)%></p>
+                            
+                        <hr>
+                        <h2>Distribution of cost</h2>
+                        <hr>
+
+                        <br>
+                        <%for(let dist of Distribute){%>
+                            <p style="font-weight: 500; font-size: large;"><%=dist%></p>
+                        <%}%>
+                        <button type="button" onclick="closeAlert()"   class="btn-close "></button>
+                    </div>
+
+                    <div id="showIdForDelete" class="alert AlertClass  alert-success alert-dismissible fade show   mt-3">
+                        <p>Note: Click  X to delete Trip</p>
+                        <h2>Total Cost Spend By Each Participant</h2>
+                        <hr>
+                        
+                        <%for(let parti of allParticipants){%>
+                            <p style="font-weight: 500; font-size: large;"><%=parti.name%> has spend <%=parti.totalCost%></p>
+                        <%}%>
+               
+                        <hr>
+                    
+                            <p style="font-weight: 500; font-size: large;">Splitted Cost : <%=SplittedCost.toFixed(2)%></p>
+                            
+                        <hr>
+                        <h2>Distribution of cost</h2>
+                        <hr>
+
+                        <br>
+                        <%for(let dist of Distribute){%>
+                            <p style="font-weight: 500; font-size: large;"><%=dist%></p>
+                        <%}%>
+                        <button type="button" onclick="closeAlertForDelete()"   class="btn-close "></button>
+                    </div>
+                    
+                    
+            </div>
+            <div class="expanses"  style="margin-right: 0;">
+                
+                    <h2 class="mb-3" style="text-align: center;">Add Expense</h2>
+                    <form class="exp-form" action="/trip/<%=group._id%>/expanse" method="POST" novalidate class="needs-validation">
+                        <div class="mb-2">
+                            <label for="description" class="form-label">Description </label>
+                            <input type="text" class="form-control" id="description" placeholder="Food,Travel,Stay etc" name="description" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="name" class="form-label">Payer </label>
+                            <select name="parId" id="name" class="form-control" required>
+                                <option value="" disabled selected>Select Payer</option>
+                                <% for (let par of group.participants) { %>
+                                    <option value="<%= par._id %>"><%= par.name %></option>
+        
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="amount" class="form-label">Amount </label>
+                            <input type="number" class="form-control" id="amount" name="amount" required>
+                        </div>
+                        <button class="exp-btn btn btn-primary">Add</button>
+                    </form>
+                
+            </div>
+            
+            <div>
+                <h2 style="text-align: center;">Expenses</h2>
+                <div class="showExpanses">
+                    <%if(group.expenses.length > 0){%>
+                        <%for(let exp of group.expenses){%>
+                            <div class="card mb-2 expanseCard">
+                                <div class="card-body mb">
+                                    <p>Description: <%=exp.description%></p>
+                                    <p>Paid By: <%=exp.name%></p>
+                                    <p>Amount: <%=exp.amount%></p>
+                                    <form action="/trip/<%=group._id%>/<%=exp._id%>/deleteExpanse?_method=DELETE" method="POST">
+                                        <button class="btn btn-primary">Delete</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        <%}%>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    
+    <script>
+        function showAlert(){
+            document.getElementById('showId').style.display = 'block'
+        }
+        function showAlertForDelete(){
+            document.getElementById('showIdForDelete').style.display = 'block'
+        }
+        function closeAlert(){
+            document.getElementById('showId').style.display = 'none'
+        }
+        function closeAlertForDelete(){
+            document.getElementById('showId').style.display = 'none'
+            // Redirect to the route that will handle deleting the trip
+            window.location.href = '/trip/<%= group._id %>/delete';
+        }
+    </script>
+</body>

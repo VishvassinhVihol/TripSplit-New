@@ -1,0 +1,26 @@
+<style>
+    @media screen and (max-width:500px){
+        .flashMsg{
+            width: 100%;
+            margin: 0;
+            
+        }
+    }
+
+</style>
+
+<%if(success && success.length){%>
+    <!-- if there is no sucess messege then it will return [] array and that's why we have to  that length condition so that empty div show na thy uper -->
+    <div class="flashMsg alert alert-success alert-dismissible fade show col-6 offset-3 mt-3 mb-2" role="alert">
+        <%=success%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!--to dismiss alert-->
+    </div>
+<%}%>
+
+<%if(error && error.length){%>
+   
+    <div class=" flashMsg alert alert-danger alert-dismissible fade show col-6 offset-3 mt-3 mb-2" role="alert">
+        <%=error%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button><!--to dismiss alert-->
+    </div>
+<%}%>

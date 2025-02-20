@@ -1,0 +1,59 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+
+<style>
+    .background{
+        position: fixed;
+        top: 0;
+        /* height: 100%; */
+        margin-top: 60px !important;
+        transform: scale(2);
+        z-index: -1;
+        
+    }
+    .mainPage {
+        
+       
+        text-align: center;
+        color: white;
+        background: transparent;
+        
+    }
+  
+    input{
+        color: white !important;
+    }
+</style>
+<body>
+    <!-- <div style="width: 100%; height: 500px;">
+        <spline-viewer url="https://my.spline.design/meeet-4d4ec767a21a1833e1bcff8c3a024d75/" 
+                       style="width: 100%; height: 100%;">
+        </spline-viewer>
+    </div> -->
+    <iframe class="background" src='https://my.spline.design/meeet-4d4ec767a21a1833e1bcff8c3a024d75/' frameborder='0' width='100%' height='100%'></iframe>
+    <div class="mainPage">
+        <h1 style="text-align: center;margin-top:8px;color:white;margin-top: 20px;">Welcome To TripSplit!</h1><br>
+        <div class=" newTrip p-2">
+            <div class="newTripBody">
+                <h2>Login on TripSplit</h2>
+                <form action="/login" method="POST" novalidate class="needs-validation">
+                    <div class="my-3">
+                        <input id="name" name="username" class="form-control" type="text" required placeholder="Enter username">
+                        <div class="invalid-feedback">
+                            Username is required!
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <input id="password" name="password" class="form-control" type="password" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            Password is required!
+                        </div>
+                    </div>
+                    <button class="btn btn-success mt-4" type="submit">Login</button><br><br>
+                </form>
+                <p>Don't have an account? <button class="btn btn-success"><a href="/signup">Signup</a></button></p>
+            </div>
+        </div>
+    </div>
+    
+</body>

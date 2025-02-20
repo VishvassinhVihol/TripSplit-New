@@ -1,10 +1,42 @@
-<nav>
+<nav class="nav">
     <div class="navbar">
-       <a class="nav-link" href="#">Your Groups</a>
-       <a class="nav-link" href="#">Home</a>
-       <a class="nav-link" href="#">Contact</a>
-       <a class="nav-link" href="#">About Us</a>
-       <a class="nav-link" href="/signup">Signup</a>
-       <a class="nav-link" href="/login">Login</a>
+        <div class="container-fluid  navbar-expand-lg nav-body">
+            
+            <a class="navbar-brand" href="#">TripSplit <i class="fa-solid fa-plane fa-flip-vertical" style="color: #ff0000;"></i></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trip">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trip/showTrips">Your Trips</a>
+                    </li>
+                   
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trip/new">Add Trip</a>
+                    </li>
+                    <div class="loginSignup ms-auto">
+                        <%if(!currUser){%>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/signup">Signup</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                        <%}%>
+                        <%if(currUser){%>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                        <%}%>
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
 </nav>

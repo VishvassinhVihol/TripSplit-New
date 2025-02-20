@@ -1,0 +1,207 @@
+body{
+    /* background-color: #111; */
+    /* color: white; */
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+   
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav{
+    position: sticky !important;
+    top: 0px !important;
+    z-index: 2;
+}
+.navbar{
+    /* background-color: rgb(105, 250, 250); */
+    /* background: #00bfff; Glowing Blue */
+    width: 100vw;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    box-shadow: 0 4px 10px rgba(0, 191, 255, 0.4);
+    
+
+}
+.nav-item a,.navbar-brand{
+    color: skyblue !important;
+}
+.navbar-nav{
+    width: 100%;
+    
+}
+.loginSignup{
+    display: flex;
+    
+}
+.container{
+    height: 100%;
+    flex: 1;
+}
+.newTrip{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    background: transparent;
+    
+}
+
+.newTripBody{
+    border: 2px solid green;
+    padding: 5vh 5vw;
+    border-radius: 1rem;
+    width: 500px;
+}
+.index{
+    display: flex;
+    justify-content: space-around;
+   
+    align-items: center;
+    flex-wrap: wrap;
+}
+.expanses{
+    width: 500px;
+    padding: 10px;
+}
+.expanseCard{
+    background-color: #222831;
+    color: white;
+}
+.expanseCard p{
+    /* background-color: rgb(0, 255, 47); */
+    font-size: 16px;
+    font-weight: 600;
+}
+.showExpanses{
+    
+    height: 40vh;
+    padding: 5px;
+    overflow: auto;
+}
+
+.showExpanses::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar */
+}
+
+/* Scrollbar handle (the part you drag) */
+.showExpanses::-webkit-scrollbar-thumb {
+    background-color: #888; /* Darker color for the thumb */
+    border-radius: 6px; /* Rounded corners for the thumb */
+    border: 3px solid #f1f1f1; /* Border around the thumb for contrast */
+}
+
+/* Scrollbar on hover (when the user hovers over the scrollbar) */
+.showExpanses::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker thumb when hovered */
+}
+
+/* Scrollbar track when user is scrolling */
+.showExpanses::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light color for the track */
+    border-radius: 6px; /* Rounded corners for the track */
+}
+
+/* in showTrips.ejs */
+.showTrips{
+    /* width: 300px;
+    height: 250px; */
+   
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 4px 8px blue;
+}
+.card{
+    background: #222;
+    color: white;
+}
+.card-title{
+    font-weight: 600 !important;
+}
+ .card:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+}
+.showTrips img{
+    
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+.row{
+    width: 100%;
+    margin: auto;
+    /* margin: 0 !important; */
+}
+#showId{
+    display: none;
+    position:fixed; 
+    top: 48%;
+    left: 50%;
+    padding: 20px;
+    transform:translate(-50%, -50%);
+    text-align: center;
+    border: 2px solid black;
+    width: 90%;
+    z-index:1;
+    max-width: 500px;
+    height: 80vh;
+}
+#showIdForDelete{
+    display: none;
+    position:fixed; 
+    top: 48%;
+    left: 50%;
+    padding: 20px;
+    transform:translate(-50%, -50%);
+    text-align: center;
+    border: 2px solid black;
+    width: 90%;
+    z-index:1;
+    max-width: 500px;
+    height: 80vh;
+}
+.exp-btn{
+    position: relative;
+    width: 100%;
+}
+
+input{
+    color: white !important;
+    background: transparent !important;
+}
+input::placeholder{
+    color: rgba(255, 255, 255, 0.584) !important;
+}
+
+/* resposiveness */
+@media screen and (max-width: 893px) {
+    .showExpanses{
+        padding: 10px;
+        width: 100vw;
+        height: auto;
+    }
+    .exp-btn{
+        text-align: center;
+        
+    }
+    
+  }
+@media screen and (max-width: 430px) {
+    .newTripBody button{
+        width: 100%;
+    }
+   
+    
+  }

@@ -1,0 +1,97 @@
+<%- layout('./layouts/boilerplate.ejs') %>
+<style>
+   
+    .background{
+        margin-top: 50px;
+        position: fixed;
+        top: 0;
+        /* transform: scale(1.5); */
+        height: 100vh;
+        z-index: -1;
+    }
+    .newTrip{
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px;
+        margin: 0px !important;
+      
+        
+    }
+    .newTripBody{
+        border: 2px solid #00FFC6;
+    }
+    
+   
+</style>
+<body>
+    <iframe class="background" src='https://my.spline.design/particles-d9382bce4660304725e818210677b275/' frameborder='0' width='100%' height='100%'></iframe>
+    <div class="newTrip" style="padding-top: 10vh;">
+        <div class="newTripBody">
+            <h2>Create New Trip</h2>
+            <form action="/trip/new" method="POST" class="needs-validation" novalidate>
+                
+                <!-- Trip Name Input -->
+                <div class="mt-3">
+                    <label for="tripName" class="form-label">Trip Name</label>
+                    <input id="tripName" class="form-control" name="title" type="text" placeholder="Goa Trip" required>
+                    <div class="invalid-feedback">
+                        Trip Name is required!
+                    </div>
+                </div>
+
+                <!-- Participants Inputs -->
+                <div id="participantsContainer" class="mt-3">
+                    <div class="participant-div">
+                        <label for="participant-1" class="form-label">Group Member-1:</label>
+                        <input id="participant-1-name" class="form-control" name="participants[0][name]" placeholder="Enter Member Name" type="text" required>
+                        <div class="invalid-feedback">
+                            Minimum 1 Member is required!
+                        </div>
+                        <label for="participant-1" class="form-label">email:</label>
+
+                        <input id="participant-1-email" class="form-control" name="participants[0][email]" placeholder="Enter Member Name" type="email" required>
+                        <div class="invalid-feedback">
+                            Minimum 1 Member is required!
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add Member Button -->
+                <button type="button" id="addMemberBtn" class="btn btn-primary my-3">Add Member</button><br>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let addMemberBtn = document.getElementById('addMemberBtn');
+            let participantsContainer = document.getElementById('participantsContainer');
+            let participantCount = 1;
+
+            addMemberBtn.addEventListener('click', () => {
+                participantCount++;
+
+                let inputDiv = document.createElement('div');
+                inputDiv.className = 'participant-div';
+
+                inputDiv.innerHTML = `
+                    <label for="participant-${participantCount}" class="form-label">Group Member-${participantCount}:</label>
+                    <input type="text" id="participant-${participantCount}-name" class="form-control" name="participants[${participantCount}][name]" placeholder="Enter Member Name" required>
+                    <label for="participant-1" class="form-label">email:</label>
+                    
+                    <input id="participant-${participantCount}-email" class="form-control" name="participants[${participantCount}][email]" placeholder="Enter Member Name" type="email" required>
+                    <button type="button" class="btn btn-sm btn-danger remove-member mt-1">Remove</button>
+                `;
+
+                participantsContainer.appendChild(inputDiv);
+
+                // Add event listener for the remove button
+                inputDiv.querySelector('.remove-member').addEventListener('click', () => {
+                    inputDiv.remove();
+                });
+            });
+        });
+    </script>
+</body>
